@@ -1,0 +1,10 @@
+prefect==3.*
+duckdb==1.*
+pandas==2.*
+pyarrow==17.*
+pandera==0.20.*
+requests==2.*
+python-dotenv==1.*
+jinja2==3.*
+SQLAlchemy==2.*
+openpyxl==3.*

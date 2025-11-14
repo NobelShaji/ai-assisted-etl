@@ -1,0 +1,22 @@
+# Python / venv / cache
+__pycache__/
+*.pyc
+.venv/
+.env
+
+# Ignore everything inside data except .gitkeep
+data/*
+!data/.gitkeep
+
+# Ignore everything inside docs/llm_logs except .gitkeep
+docs/llm_logs/*
+!docs/llm_logs/.gitkeep
+
+# DuckDB / sqlite / DB files
+*.duckdb
+*.sqlite*
+*.db
+
+# OS / editor files
+.DS_Store
+
