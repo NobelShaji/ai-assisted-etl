@@ -124,6 +124,23 @@ flowchart LR
 - `sql/02_*.sql`: feature engineering  
 - `sql/03_*.sql`: data-quality checks  
 
+📊 Quick EDA Snapshots
+
+The notebook notebooks/01_taxi_eda.ipynb connects to DuckDB and explores the Gold table.
+Some of the plots saved to docs/images/:
+
+Trip distance distribution
+
+
+Trip duration distribution
+
+
+Average fare by time of day
+
+
+Tip behavior and fare relationship
+
+
 ## 💼 Why this project matters for analytics roles
 
 This project is designed to look like a realistic piece of a modern data stack:
@@ -145,6 +162,7 @@ This project is designed to look like a realistic piece of a modern data stack:
 
 - **Exploratory analysis notebook**  
   `notebooks/01_taxi_eda.ipynb` shows how to connect to DuckDB, inspect tables, and run basic EDA — similar to how you’d explore a new dataset in a real job.
+
 
 
 ## 🧱 Tech Stack
