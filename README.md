@@ -24,6 +24,138 @@ The goal of this project is to simulate how **modern ETL tools embed LLM/agent c
 
 ---
 
+## 🏗 Architecture (ASCII Overview)
+
+Data flows through the pipeline in clearly defined layers:
+
+```text
+         ┌────────────────────────────┐
+         │  1. Ingest (Prefect Task) │
+         │  ───────────────────────  │
+         │  Download NYC Yellow Taxi │
+         │  CSV → data/raw/         │
+         └────────────┬─────────────┘
+                      │
+                      ▼
+         ┌────────────────────────────┐
+         │  2. Bronze Layer           │
+         │  ───────────────────────  │
+         │  CSV → Parquet            │
+         │  Basic type coercion      │
+         │  data/bronze/taxi_sample  │
+         └────────────┬─────────────┘
+                      │
+                      ▼
+         ┌────────────────────────────┐
+         │  3. LLM-Assisted Transform │
+         │  ───────────────────────  │
+         │  src/llm_assist.py        │
+         │  - logs schema + goal     │
+         │  - returns transform(df)  │
+         │  → cleaned DataFrame      │
+         └────────────┬─────────────┘
+                      │
+                      ▼
+         ┌────────────────────────────┐
+         │  4. Silver Layer           │
+         │  ───────────────────────  │
+         │  pandera validation       │
+         │  data/silver/taxi_sample  │
+         │  DuckDB: silver.taxi_sample│
+         └────────────┬─────────────┘
+                      │
+                      ▼
+         ┌────────────────────────────┐
+         │  5. Gold / Features        │
+         │  ───────────────────────  │
+         │  sql/04_ml_features_*.sql │
+         │  DuckDB: gold.taxi_trip_  │
+         │           features        │
+         └────────────┬─────────────┘
+                      │
+                      ▼
+         ┌────────────────────────────┐
+         │  6. Analytics & Modeling   │
+         │  ───────────────────────  │
+         │  DuckDB SQL, notebooks,   │
+         │  BI tools (optional)      │
+         └────────────────────────────┘
+
+
+⚠️ Note: that’s a **markdown code block inside markdown**, so be sure you keep both pairs of triple backticks exactly as shown (outer ```md and inner ```text).
+
+---
+
+## 2️⃣ Mermaid Diagram (B)
+
+Right **under** that ASCII section, paste this Mermaid version:
+
+```md
+## 🧭 Architecture (Mermaid Diagram)
+
+```mermaid
+flowchart LR
+    subgraph Raw["Raw Layer (data/raw)"]
+        R1["NYC Yellow Taxi CSV
+        data/raw/taxi_sample.csv"]
+    end
+
+    subgraph Bronze["Bronze Layer (data/bronze)"]
+        B1["Parquet: taxi_sample.parquet"]
+    end
+
+    subgraph LLM["LLM-Assisted Transform"]
+        L1["suggest_cleaning_code(schema, goal)
+→ returns transform(df) code"]
+        L2["transform(df) applied in Prefect task"]
+    end
+
+    subgraph Silver["Silver Layer (data/silver + DuckDB)"]
+        S1["Validated Parquet:
+data/silver/taxi_sample_clean.parquet"]
+        S2["DuckDB table:
+silver.taxi_sample"]
+    end
+
+    subgraph Gold["Gold / Features (DuckDB)"]
+        G1["gold.taxi_trip_features
+(sql/04_ml_features_materialized.sql)"]
+    end
+
+    subgraph Analytics["Analytics & ML"]
+        A1["SQL: 01/02/03_*.sql
+(analytics, features, data quality)"]
+        A2["Notebooks / BI tools (optional)"]
+    end
+
+    R1 --> B1
+    B1 --> L1 --> L2 --> S1 --> S2 --> G1 --> A1 --> A2
+
+
+Again: keep the nested backticks exactly like that.
+
+---
+
+## Quick sanity check (what your README top will look like)
+
+Rough order:
+
+```md
+# AI-Assisted ETL Pipeline with DuckDB & Prefect
+
+<p align="center">
+  ...badges...
+</p>
+
+## 🏗 Architecture (ASCII Overview)
+...ASCII diagram...
+
+## 🧭 Architecture (Mermaid Diagram)
+...Mermaid code...
+
+## 🔍 High-Level Overview
+...your existing section...
+
 ## 🔍 High-Level Overview
 
 **Data flow:**
