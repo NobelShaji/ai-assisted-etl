@@ -20,3 +20,13 @@ docs/llm_logs/*
 # OS / editor files
 .DS_Store
 
+
+# Jupyter junk
+.ipynb_checkpoints/
+notebooks/.ipynb_checkpoints/
+
+# Temp files
+*.save
+untitled.md
+cd
+
