@@ -1,3 +1,14 @@
+<p align="center">
+  <img src="https://img.shields.io/badge/Python-3.10-blue?logo=python" />
+  <img src="https://img.shields.io/badge/Prefect-3.0-blueviolet?logo=prefect" />
+  <img src="https://img.shields.io/badge/DuckDB-0.10.2-yellow?logo=duckdb" />
+  <img src="https://img.shields.io/badge/Pandas-2.1-green?logo=pandas" />
+  <img src="https://img.shields.io/badge/LLM_Assisted-Enabled-orange?logo=openai" />
+  <img src="https://img.shields.io/badge/Status-Operational-brightgreen?logo=github" />
+  <img src="https://img.shields.io/github/license/NobelShaji/ai-assisted-etl" />
+</p>
+
+
 # AI-Assisted ETL Pipeline with DuckDB & Prefect
 
 An end-to-end **AI-assisted ETL/ELT pipeline** that ingests NYC Taxi data, runs **LLM-style data cleaning & transformation logic**, validates schemas, and loads analytics- and ML-ready tables into **DuckDB**.
