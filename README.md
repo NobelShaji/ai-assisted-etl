@@ -163,3 +163,48 @@ ai-assisted-etl/
     └── warehouse.py
 ```
 
+---
+
+## 📓 Notebooks (Optional Exploration)
+
+This project includes a dedicated `notebooks/` directory for interactive analysis, validation, and feature exploration.
+
+Typical uses:
+- Ad-hoc analytics queries using DuckDB
+- Exploring the Silver and Gold layer tables
+- Plotting distributions and feature relationships
+- Prototyping ML models using `gold.taxi_trip_features`
+
+### Example: Connect to DuckDB in a Notebook
+
+```python
+import duckdb
+con = duckdb.connect("warehouse.duckdb")
+
+# Preview the gold table
+con.sql("SELECT * FROM gold.taxi_trip_features LIMIT 5").df()
+
+### Launching Jupyter for Interactive Exploration
+
+If you want to work with the ETL outputs interactively:
+
+Install JupyterLab:
+
+```bash
+pip install jupyterlab
+Launch the environment:
+
+jupyter lab
+
+
+This will start a local server and open JupyterLab in your browser.
+Inside Jupyter, open any file in the notebooks/ folder to begin exploring the Silver and Gold tables.
+
+
+---
+
+# 👉 **Your Task Now**
+
+1. Open README:
+   ```bash
+   nano README.md
