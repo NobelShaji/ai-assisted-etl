@@ -208,3 +208,33 @@ Inside Jupyter, open any file in the notebooks/ folder to begin exploring the Si
 1. Open README:
    ```bash
    nano README.md
+## 📊 Exploratory Data Analysis (EDA)
+
+This project includes a simple exploratory data analysis notebook (`notebooks/01_taxi_eda.ipynb`) that examines the cleaned and feature-enhanced dataset stored in `gold.taxi_trip_features`.
+
+### Trip Duration
+A histogram of `duration_min` shows most trips are short, typically under 15 minutes, with a long tail of longer rides.
+
+### Speed Distribution
+The `speed_mph` feature (distance ÷ time) shows most trips fall between 5–20 mph, which is consistent with NYC traffic patterns.
+
+### Tip Percentage
+`tip_pct` is centered around 15–25%. Cash trips (where tip = 0) appear clearly in the distribution.
+
+### Hour of Day
+The `pickup_hour` histogram shows expected demand peaks:
+- Morning commute
+- Late afternoon/early evening
+- Late-night activity
+
+### Daypart Breakdown
+The derived `pickup_daypart` feature groups trips into:
+- morning  
+- afternoon  
+- evening  
+- night  
+
+Counts show evening and afternoon as the highest-activity periods.
+
+These plots help verify the integrity of the upstream pipeline (Bronze → Silver → Gold) and confirm that the feature engineering logic behaves as expected. The notebook can be extended with zone-level analysis or revenue summaries if needed.
+
