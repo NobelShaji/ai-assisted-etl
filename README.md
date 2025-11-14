@@ -124,6 +124,29 @@ flowchart LR
 - `sql/02_*.sql`: feature engineering  
 - `sql/03_*.sql`: data-quality checks  
 
+## 💼 Why this project matters for analytics roles
+
+This project is designed to look like a realistic piece of a modern data stack:
+
+- **Data ingestion & orchestration**  
+  Uses Prefect to schedule and run an end-to-end flow instead of one-off scripts.
+
+- **Layered warehouse thinking (Bronze → Silver → Gold)**  
+  Separates raw data, cleaned data, and ML-ready features, which is how many teams structure their lakes/warehouses.
+
+- **“LLM-style” transformation logic**  
+  The `llm_assist.py` stub mimics how an LLM/agent could propose cleaning rules and generate code, but everything stays local and reproducible.
+
+- **Data quality & validation**  
+  The Silver layer uses `pandera` to enforce schema rules before data is promoted downstream.
+
+- **Feature engineering for ML / analytics**  
+  The Gold table (`gold.taxi_trip_features`) includes duration, speed, tip percentage, time-of-day buckets, and flags for long or high-fare trips.
+
+- **Exploratory analysis notebook**  
+  `notebooks/01_taxi_eda.ipynb` shows how to connect to DuckDB, inspect tables, and run basic EDA — similar to how you’d explore a new dataset in a real job.
+
+
 ## 🧱 Tech Stack
 - Python 3.10  
 - Prefect 3  
